@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "513217510880",
+    "firebase_url": "https://simple-money-manager-8b270.firebaseio.com",
+    "project_id": "simple-money-manager-8b270",
+    "storage_bucket": "simple-money-manager-8b270.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513217510880:android:c777fa8e3308d14e",
+        "android_client_info": {
+          "package_name": "com.example.simplemoneymanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513217510880-gc9qtkmcq52rni1nlka4q9vi5tp6meka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0lBnLQ9rQJSJ-Ch2CLS60NKeZljC5jjU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
