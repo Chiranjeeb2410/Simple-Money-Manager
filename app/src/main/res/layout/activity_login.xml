@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -18,38 +19,40 @@
         android:id="@+id/loginpaswd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/loginEmail"
         android:layout_margin="15dp"
         android:hint="Password"
         android:inputType="numberPassword"/>
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
 
     <Button
         android:id="@+id/btnLogIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_below="@id/loginpaswd"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:text="Login"
         android:textSize="25dp" />
 
     <Button
-        android:text="Forgot Password?"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
         android:id="@+id/forgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogIn"
         android:background="@null"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginBottom="8dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="18dp"
+        android:text="Forgot Password?"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/OR_button"
+        android:layout_below="@id/forgotPass"
+        android:layout_marginTop="14dp"
         android:text="OR"
         android:gravity="center"
         android:textColor="@color/colorPrimary"/>
@@ -58,8 +61,18 @@
         android:id="@+id/TVSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/OR_button"
+        android:gravity="center_horizontal"
         android:layout_margin="15dp"
         android:text="New User? Register Here"
         android:textSize="20sp" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TVSignIn"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
 </RelativeLayout>
