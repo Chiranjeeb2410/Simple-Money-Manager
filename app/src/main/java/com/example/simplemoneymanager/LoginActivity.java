@@ -23,11 +23,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.AuthResult;
+import com.jaeger.library.StatusBarUtil;
 
 public class LoginActivity extends AppCompatActivity {
     public EditText loginEmailId, logInpasswd;
-    Button btnLogIn, newPassButton;
-    TextView signup;
+    Button btnLogIn;
+    TextView signup, newPassButton;
     private FirebaseAuth.AuthStateListener authStateListener;
 
     private static final int RC_SIGN_IN = 234;
@@ -39,9 +40,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_logingin);
+        StatusBarUtil.setTransparent(this);
         firebaseAuth = FirebaseAuth.getInstance();
         loginEmailId = findViewById(R.id.loginEmail);
+        loginEmailId.setHighlightColor(getResources().getColor(R.color.colorPrimary));
         logInpasswd = findViewById(R.id.loginpaswd);
         btnLogIn = findViewById(R.id.btnLogIn);
         signup = findViewById(R.id.TVSignIn);
@@ -70,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent I = new Intent(LoginActivity.this, UserActivity.class);
                     startActivity(I);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(LoginActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
                 }
             }
         };

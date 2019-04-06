@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class NewPassActivity extends AppCompatActivity {
+
     public EditText emailId;
     Button btnNewPass;
     public FirebaseAuth firebaseAuth;
