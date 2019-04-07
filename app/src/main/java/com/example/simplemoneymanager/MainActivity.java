@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     TextView signIn;
     FirebaseAuth firebaseAuth;
 
+    private ProgressBar signUpProgress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +34,13 @@ public class MainActivity extends AppCompatActivity {
         emailId = findViewById(R.id.ETemail);
         passwd = findViewById(R.id.ETpassword);
         btnSignUp = findViewById(R.id.btnSignUp);
+        signUpProgress = findViewById(R.id.signup_progressbar);
         signIn = findViewById(R.id.TVSignIn);
       //  newPassButton = findViewById(R.id.forgotPass);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                signUpProgress.setVisibility(View.VISIBLE);
                 String emailID = emailId.getText().toString();
                 String paswd = passwd.getText().toString();
                 if (emailID.isEmpty()) {
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     firebaseAuth.createUserWithEmailAndPassword(emailID, paswd).addOnCompleteListener(MainActivity.this, new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
-
+                            signUpProgress.setVisibility(View.GONE);
                             if (!task.isSuccessful()) {
                                 Toast.makeText(MainActivity.this.getApplicationContext(),
                                         "SignUp unsuccessful: " + task.getException().getMessage(),
