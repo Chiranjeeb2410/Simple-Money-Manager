@@ -9,7 +9,7 @@ public class Category extends RealmObject{
     @PrimaryKey
     private String categoryId;
     private String categoryName;
-    private int categoryLmit;
+    private String categoryType;
 
     public Category(){
 
@@ -31,11 +31,11 @@ public class Category extends RealmObject{
         return categoryName;
     }
 
-    public void setCategoryLmit(int categoryLmit) {
-        this.categoryLmit = categoryLmit;
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
     }
 
-    public int getCategoryLmit() {
-        return categoryLmit;
+    public String getCategoryType() {
+        return categoryType;
     }
 }

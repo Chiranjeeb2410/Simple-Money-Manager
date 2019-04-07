@@ -67,9 +67,9 @@ public class UserActivity extends AppCompatActivity {
                                             String categoryId = category.substring(0, 3).toUpperCase();
                                             Random random = new Random();
                                             String randomno = String.valueOf(random.nextInt(99));
-                                            int limit = Integer.parseInt(categoryLimit.getText().toString());
+                                            String categoryType = categoryLimit.getText().toString();
                                             dialogInterface.dismiss();
-                                            addCategoryInfo(categoryId+randomno, category, limit);
+                                            addCategoryInfo(categoryId+randomno, category, categoryType);
                                         }
                                     }
                                 });
@@ -108,13 +108,13 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
-    private void addCategoryInfo(String id, String name, int limit){
+    private void addCategoryInfo(String id, String name, String categoryType){
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         Category category = realm.createObject(Category.class);
         category.setCategoryId(id);
         category.setCategoryName(name);
-        category.setCategoryLmit(limit);
+        category.setCategoryType(categoryType);
         realm.commitTransaction();
     }
 }

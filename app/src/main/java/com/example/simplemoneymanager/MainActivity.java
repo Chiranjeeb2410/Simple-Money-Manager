@@ -1,6 +1,9 @@
 package com.example.simplemoneymanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.print.PrinterId;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,11 +14,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.simplemoneymanager.models.Category;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jaeger.library.StatusBarUtil;
+
+import java.util.ArrayList;
+
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
     public EditText emailId, passwd;
@@ -23,12 +31,21 @@ public class MainActivity extends AppCompatActivity {
     TextView signIn;
     FirebaseAuth firebaseAuth;
 
+    private SharedPreferences SP;
+
     private ProgressBar signUpProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        SP = PreferenceManager.getDefaultSharedPreferences(this);
+        String firstLaunch = SP.getString("firstLaunch", "no");
+        if (firstLaunch.equals("no")){
+            addCategoriesForFirstTimeLaunch();
+            SharedPreferences.Editor editor = SP.edit();
+            editor.putString("firstLaunch", "yes");
+        }
         StatusBarUtil.setTransparent(this);
         firebaseAuth = FirebaseAuth.getInstance();
         emailId = findViewById(R.id.ETemail);
@@ -73,9 +90,52 @@ public class MainActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent I = new Intent(MainActivity.this, LoginActivity.class);
+                Intent I = new Intent(MainActivity.this, CategoryActivity.class);
                 startActivity(I);
             }
         });
+    }
+
+    private void addCategoriesForFirstTimeLaunch(){
+        Realm realm = Realm.getDefaultInstance();
+        ArrayList<Category> categories = new ArrayList<>();
+        Category c1 = new Category();
+        c1.setCategoryName("Food");
+        c1.setCategoryType("Expense");
+        c1.setCategoryId("FOO13");
+        categories.add(c1);
+        Category c2 = new Category();
+        c2.setCategoryName("Transportation");
+        c2.setCategoryType("Expense");
+        c2.setCategoryId("TRA23");
+        categories.add(c2);
+        Category c3 = new Category();
+        c3.setCategoryName("Electricity");
+        c3.setCategoryType("Expense");
+        c3.setCategoryId("ELE45");
+        categories.add(c3);
+        Category c4 = new Category();
+        c4.setCategoryName("Entertainment");
+        c4.setCategoryType("Expense");
+        c4.setCategoryId("ENT56");
+        categories.add(c4);
+        Category c5 = new Category();
+        c5.setCategoryName("Bills");
+        c5.setCategoryType("Expense");
+        c5.setCategoryId("BIL65");
+        categories.add(c5);
+        Category c6 = new Category();
+        c6.setCategoryName("Salary");
+        c6.setCategoryType("Income");
+        c6.setCategoryId("SAL25");
+        categories.add(c6);
+        for (Category category: categories){
+            realm.beginTransaction();
+            Category category1 = realm.createObject(Category.class);
+            category1.setCategoryId(category.getCategoryId());
+            category1.setCategoryName(category.getCategoryName());
+            category1.setCategoryType(category.getCategoryType());
+            realm.commitTransaction();
+        }
     }
 }

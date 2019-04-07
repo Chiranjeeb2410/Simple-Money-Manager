@@ -9,11 +9,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
+        android:background="@drawable/edittext_border"
         android:layout_marginRight="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/category_name"
             android:text="Food"
             android:layout_margin="15dp"
             android:textSize="25dp"/>
@@ -28,16 +30,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Limit: "
+                android:id="@+id/expense_cat"
+                android:text="Expense"
                 android:textSize="20dp"
                 android:gravity="center_vertical"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5000"
-                android:textSize="20dp"/>
-
 
         </LinearLayout>
 

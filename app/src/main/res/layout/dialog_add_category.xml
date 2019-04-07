@@ -24,8 +24,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/category_name"
             android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_border"
             android:layout_marginLeft="20dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:padding="15dp"
             android:layout_marginRight="20dp"
             android:hint="Enter category name"/>
 
@@ -35,7 +36,8 @@
             android:id="@+id/category_limit"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/edittext_border"
+            android:padding="15dp"
             android:hint="Enter category limit"
             android:inputType="number"
             android:layout_marginLeft="20dp"/>
