@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         SP = PreferenceManager.getDefaultSharedPreferences(this);
-        String firstLaunch = SP.getString("firstLaunch", "no");
+        /**String firstLaunch = SP.getString("firstLaunch", "no");
         if (firstLaunch.equals("no")){
             addCategoriesForFirstTimeLaunch();
             SharedPreferences.Editor editor = SP.edit();
             editor.putString("firstLaunch", "yes");
-        }
+        }*/
         StatusBarUtil.setTransparent(this);
         firebaseAuth = FirebaseAuth.getInstance();
         emailId = findViewById(R.id.ETemail);
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent I = new Intent(MainActivity.this, CategoryActivity.class);
+                Intent I = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(I);
             }
         });

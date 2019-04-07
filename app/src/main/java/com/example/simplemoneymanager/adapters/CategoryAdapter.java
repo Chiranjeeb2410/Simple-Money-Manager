@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.simplemoneymanager.R;
+
+
 import com.example.simplemoneymanager.models.Category;
 
 import java.util.ArrayList;
