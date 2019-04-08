@@ -96,6 +96,7 @@ public class UserActivity extends AppCompatActivity {
                                     }
                                 });
                                 builder.create().show();
+                                break;
                         }
 
                     }
