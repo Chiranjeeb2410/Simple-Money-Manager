@@ -3,6 +3,7 @@ package com.example.simplemoneymanager;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.usb.UsbRequest;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -46,7 +47,7 @@ public class UserActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
                 builder.setItems(getResources().getStringArray(R.array.add_array), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -86,7 +87,15 @@ public class UserActivity extends AppCompatActivity {
                                 break;
 
                             case 1:
-                                break;
+                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which)  {
+                                        Intent in = new Intent(UserActivity.this, TransactionActivity.class );
+                                            UserActivity.this.startActivity(in);
+                                    }
+                                });
+                                builder.create().show();
                         }
 
                     }

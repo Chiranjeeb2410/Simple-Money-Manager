@@ -23,9 +23,11 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".UserActivity">
+        <activity
+            android:name=".UserActivity">
         </activity>
-        <activity android:name=".NewPassActivity" />
+        <activity
+            android:name=".NewPassActivity" />
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
