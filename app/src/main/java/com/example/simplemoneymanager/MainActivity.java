@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.print.PrinterId;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
-    public EditText emailId, passwd;
+    public EditText emailId, passwd, confPasswd;
     Button btnSignUp, newPassButton;
     TextView signIn;
     FirebaseAuth firebaseAuth;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btnSignUp);
         signUpProgress = findViewById(R.id.signup_progressbar);
         signIn = findViewById(R.id.TVSignIn);
+        confPasswd = findViewById(R.id.Confpassword);
       //  newPassButton = findViewById(R.id.forgotPass);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,15 +62,23 @@ public class MainActivity extends AppCompatActivity {
                 signUpProgress.setVisibility(View.VISIBLE);
                 String emailID = emailId.getText().toString();
                 String paswd = passwd.getText().toString();
+                String confPd = confPasswd.getText().toString();
                 if (emailID.isEmpty()) {
                     emailId.setError("Provide your Email first!");
                     emailId.requestFocus();
-                } else if (paswd.isEmpty()) {
+                }
+                else if (paswd.isEmpty()) {
                     passwd.setError("Set your password");
                     passwd.requestFocus();
-                } else if (emailID.isEmpty() && paswd.isEmpty()) {
+                }
+                else if (emailID.isEmpty() && paswd.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
-                } else if (!(emailID.isEmpty() && paswd.isEmpty())) {
+                }
+                else if (!paswd.equals(confPd)) {
+                    Toast.makeText(MainActivity.this, "Both password fields must be identical",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else if (!(emailID.isEmpty() && paswd.isEmpty())) {
                     firebaseAuth.createUserWithEmailAndPassword(emailID, paswd).addOnCompleteListener(MainActivity.this, new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
@@ -82,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-                } else {
+                }
+                else {
                     Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }

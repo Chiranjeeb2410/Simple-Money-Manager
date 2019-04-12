@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:id="@+id/sign_up_text"
-                android:text="Sign Up"
+                android:text="Register"
                 android:textSize="25dp"
                 android:layout_marginBottom="35dp"
                 android:textColor="#515151"/>
@@ -78,6 +78,22 @@
                 android:drawablePadding="12dp"
                 android:textSize="17dp"/>
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/Confpassword"
+                android:hint="Confirm Password"
+                android:padding="15dp"
+                android:background="@drawable/edittext_border"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:drawableLeft="@drawable/ic_card_travel_black_24dp"
+                android:paddingBottom="15dp"
+                android:drawablePadding="12dp"
+                android:textSize="17dp"
+                android:layout_marginTop="10dp"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +103,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@color/colorPrimary"
                 android:layout_marginBottom="10dp"
-                android:text="SIGN UP"
+                android:text="Register"
                 android:textSize="18dp" />
 
             <LinearLayout
