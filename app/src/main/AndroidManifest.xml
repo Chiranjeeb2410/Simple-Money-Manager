@@ -32,6 +32,7 @@
             android:name=".SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".TransactionActivity"></activity>
     </application>
 
 </manifest>

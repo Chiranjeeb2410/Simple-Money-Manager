@@ -88,15 +88,8 @@ public class UserActivity extends AppCompatActivity {
                                 break;
 
                             case 1:
-                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which)  {
-                                        Intent in = new Intent(UserActivity.this, TransactionActivity.class );
-                                        startActivity(in);
-                                    }
-                                });
-                                builder.create().show();
+                                Intent in = new Intent(UserActivity.this, TransactionActivity.class );
+                                startActivity(in);
                                 break;
                         }
 
