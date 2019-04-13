@@ -93,7 +93,7 @@ public class UserActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which)  {
                                         Intent in = new Intent(UserActivity.this, TransactionActivity.class );
-                                            UserActivity.this.startActivity(in);
+                                        startActivity(in);
                                     }
                                 });
                                 builder.create().show();

@@ -54,6 +54,7 @@
                 android:layout_marginRight="10dp"
                 android:id="@+id/loginpaswd"
                 android:hint="Password"
+                android:inputType="textPassword"
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:background="@drawable/edittext_border"
                 android:padding="15dp"
