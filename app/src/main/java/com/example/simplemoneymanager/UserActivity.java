@@ -43,6 +43,7 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        btnLogOut = (Button) findViewById(R.id.btnLogOut);
         floatingActionButton = findViewById(R.id.add_floating_button);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,17 +106,15 @@ public class UserActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-        /**  btnLogOut = (Button) findViewById(R.id.btnLogOut);
-         btnLogOut.setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View view) {
 
-        FirebaseAuth.getInstance().signOut();
-        Intent I = new Intent(UserActivity.this, LoginActivity.class);
-        startActivity(I);
-
-        }
-        });*/
-
+        // logout user through firebaseAuth
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent I = new Intent(UserActivity.this, LoginActivity.class);
+                startActivity(I);
+            }
+        });
     }
 
     private void addCategoryInfo(String id, String name, String categoryType){

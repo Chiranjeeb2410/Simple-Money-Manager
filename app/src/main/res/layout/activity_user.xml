@@ -100,14 +100,22 @@
     </android.support.v7.widget.CardView>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_floating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_floating_button"
-        android:layout_margin="15dp"
-        android:src="@drawable/ic_add_black_24dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="348dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_add_black_24dp" />
+
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        android:text="Logout" />
 
 </RelativeLayout>
 
