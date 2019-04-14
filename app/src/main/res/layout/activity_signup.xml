@@ -4,151 +4,163 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
     android:gravity="center">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:orientation="vertical">
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="15dp"
+        android:background="@android:color/transparent"
+        app:cardCornerRadius="5dp"
+        android:layout_marginRight="15dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:id="@+id/sign_up_text"
-            android:text="Register"
-            android:textSize="25dp"
-            android:layout_marginBottom="35dp"
-            android:textColor="#515151"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/username_edittext"
-            android:hint="Username"
-            android:padding="15dp"
-            android:background="@drawable/edittext_border"
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:drawableLeft="@drawable/ic_person_black_24dp"
-            android:paddingBottom="15dp"
-            android:drawablePadding="12dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="16dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/ETemail"
-            android:hint="Email"
-            android:padding="15dp"
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:background="@drawable/edittext_border"
-            android:drawableLeft="@drawable/ic_email_black_24dp"
-            android:paddingBottom="15dp"
-            android:drawablePadding="12dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="17dp"/>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:hintEnabled="false"
-            app:passwordToggleEnabled="true">
-
-            <android.support.v7.widget.AppCompatEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:id="@+id/ETpassword"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="15dp"
-                android:background="@drawable/edittext_border"
-                android:textCursorDrawable="@drawable/color_cursor"
-                android:drawableStart="@drawable/ic_card_travel_black_24dp"
-                android:drawableLeft="@drawable/ic_card_travel_black_24dp"
-                android:paddingBottom="15dp"
-                android:layout_marginBottom="10dp"
-                android:drawablePadding="12dp"
-                android:textSize="17dp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            app:hintEnabled="false">
-
-            <android.support.v7.widget.AppCompatEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:id="@+id/Confpassword"
-                android:hint="Confirm Password"
-                android:inputType="textPassword"
-                android:padding="15dp"
-                android:background="@drawable/edittext_border"
-                android:textCursorDrawable="@drawable/color_cursor"
-                android:drawableStart="@drawable/ic_card_travel_black_24dp"
-                android:drawableLeft="@drawable/ic_card_travel_black_24dp"
-                android:paddingBottom="15dp"
-                android:drawablePadding="12dp"
-                android:textSize="17dp"
-                android:layout_marginTop="10dp"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnSignUp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/edittext_border"
-            android:backgroundTint="@color/colorPrimary"
-            android:layout_marginBottom="10dp"
-            android:text="Register"
-            android:textSize="18dp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#515151"
-                android:text="Have an account?"/>
+                android:gravity="center_horizontal"
+                android:id="@+id/sign_up_text"
+                android:text="Create Account"
+                android:layout_marginTop="10dp"
+                android:textSize="25dp"
+                android:layout_marginBottom="30dp"
+                android:textColor="#515151"/>
 
-            <TextView
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/username_edittext"
+                android:hint="Username"
+                android:padding="15dp"
+                android:background="@drawable/edittext_border"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:paddingBottom="15dp"
+                android:drawablePadding="12dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/ETemail"
+                android:hint="Email"
+                android:padding="15dp"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:background="@drawable/edittext_border"
+                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:paddingBottom="15dp"
+                android:drawablePadding="12dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="17dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/ETpassword"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:background="@drawable/edittext_border"
+                    android:textCursorDrawable="@drawable/color_cursor"
+                    android:drawableStart="@drawable/ic_card_travel_black_24dp"
+                    android:drawableLeft="@drawable/ic_card_travel_black_24dp"
+                    android:paddingBottom="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:drawablePadding="12dp"
+                    android:textSize="17dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:hintEnabled="false">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/Confpassword"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:background="@drawable/edittext_border"
+                    android:textCursorDrawable="@drawable/color_cursor"
+                    android:drawableStart="@drawable/ic_card_travel_black_24dp"
+                    android:drawableLeft="@drawable/ic_card_travel_black_24dp"
+                    android:paddingBottom="15dp"
+                    android:drawablePadding="12dp"
+                    android:textSize="17dp"
+                    android:layout_marginTop="10dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnSignUp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edittext_border"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_marginBottom="10dp"
+                android:text="Register"
+                android:textSize="18dp" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/TVSignIn"
-                android:layout_marginLeft="3dp"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginBottom="10dp"
-                android:text="Sign In"/>
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#515151"
+                    android:text="Have an account?"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TVSignIn"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginBottom="10dp"
+                    android:text="Sign In"/>
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
+    </android.support.v7.widget.CardView>
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/signup_progressbar"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>
