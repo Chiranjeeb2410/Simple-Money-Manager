@@ -73,6 +73,8 @@ public class UserActivity extends AppCompatActivity {
                                             dialogInterface.dismiss();
                                             addCategoryInfo(categoryId+randomno, category, categoryType);
                                         }
+                                        Intent intent = new Intent(UserActivity.this, CategoryActivity.class);
+                                        startActivity(intent);
                                     }
                                 });
 
@@ -113,8 +115,7 @@ public class UserActivity extends AppCompatActivity {
     private void addCategoryInfo(String id, String name, String categoryType){
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        Category category = realm.createObject(Category.class);
-        category.setCategoryId(id);
+        Category category = realm.createObject(Category.class, id);
         category.setCategoryName(name);
         category.setCategoryType(categoryType);
         realm.commitTransaction();

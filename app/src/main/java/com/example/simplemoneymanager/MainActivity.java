@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        Realm.init(getApplicationContext());
         SP = PreferenceManager.getDefaultSharedPreferences(this);
         /**String firstLaunch = SP.getString("firstLaunch", "no");
         if (firstLaunch.equals("no")){
