@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import com.example.simplemoneymanager.models.Category;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import android.widget.Spinner;
@@ -26,13 +28,17 @@ public class TransactionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
         getSupportActionBar().setTitle("Transaction Details");
-        cat = (Spinner) findViewById(R.id.sp);
+
+        cat = (Spinner) findViewById(R.id.spinner);
+
+        List<String> cat1 = new ArrayList<>();
+        cat1.add("Select Category");
 
         // retrieve spinner data
         CategoryActivity helper = new CategoryActivity(realm);
         categories = helper.getCategoryName();
-
-        adapter = new ArrayAdapter(this, android.R.layout.category_layout, cat);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, (List) cat1);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cat.setAdapter(adapter);
 
         // spinner onclick
