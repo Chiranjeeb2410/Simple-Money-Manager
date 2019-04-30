@@ -28,16 +28,14 @@ public class TransactionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
         getSupportActionBar().setTitle("Transaction Details");
-
         cat = (Spinner) findViewById(R.id.spinner);
-
-        List<String> cat1 = new ArrayList<>();
-        cat1.add("Select Category");
+        // List<String> cat1 = new ArrayList<>();
+        // cat1.add("Select Category");
 
         // retrieve spinner data
         CategoryActivity helper = new CategoryActivity(realm);
         categories = helper.getCategoryName();
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, (List) cat1);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cat.setAdapter(adapter);
 
