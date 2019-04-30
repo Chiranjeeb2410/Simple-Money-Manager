@@ -12,39 +12,39 @@
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="45dp">
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/category_layout"
-            android:layout_width="match_parent"
+        android:paddingTop="80dp">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Select Category:"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:paddingBottom="30dp">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/category"
-                android:layout_marginTop="20dp"
-                android:padding="15dp"
-                android:hint="Choose category"
-                android:inputType="textNoSuggestions" />
+            android:paddingBottom="50dp"
+            android:prompt="Spinner title">
 
-        </android.support.design.widget.TextInputLayout>
+        </android.support.v7.widget.AppCompatSpinner>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/trans_amt_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:paddingBottom="30dp">
+            android:paddingBottom="50dp">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/trans_amt"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="5dp"
                 android:padding="15dp"
                 android:hint="Enter amount"
-                android:inputType="number"
-                android:layout_marginLeft="30dp"/>
+                android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:paddingBottom="30dp">
+            android:paddingBottom="50dp">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,16 +68,17 @@
             android:id="@+id/trans_type_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="50dp">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/memo"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="5dp"
                 android:padding="15dp"
                 android:hint="Enter memo"
                 android:inputType="textNoSuggestions"
-                android:layout_marginLeft="30dp"/>
+                android:layout_marginLeft="5dp"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -85,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
-            android:paddingTop="7dp"
+            android:paddingTop="30dp"
             android:layout_centerHorizontal="true">
             <Button android:id="@+id/btn_details"
                 android:layout_width="match_parent"
