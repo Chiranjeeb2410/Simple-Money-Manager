@@ -112,12 +112,15 @@ public class UserActivity extends AppCompatActivity {
         });
     }
 
-    private void addCategoryInfo(String id, String name, String categoryType){
+    private void addCategoryInfo(final String id, final String name, final String categoryType) {
         Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        Category category = realm.createObject(Category.class, id);
-        category.setCategoryName(name);
-        category.setCategoryType(categoryType);
-        realm.commitTransaction();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Category category = realm.createObject(Category.class, id);
+                category.setCategoryName(name);
+                category.setCategoryType(categoryType);
+            }
+        });
     }
 }

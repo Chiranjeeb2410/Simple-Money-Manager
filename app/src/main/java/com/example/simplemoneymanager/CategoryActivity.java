@@ -17,6 +17,11 @@ public class CategoryActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
+    Realm realm;
+    public CategoryActivity(Realm realm)    {
+        this.realm = realm;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,13 +67,16 @@ public class CategoryActivity extends AppCompatActivity {
         c6.setCategoryType("Income");
         c6.setCategoryId("SAL25");
         categories.add(c6);
-        for (Category category: categories){
-            realm.beginTransaction();
-            Category category1 = realm.createObject(Category.class);
-            category1.setCategoryId(category.getCategoryId());
-            category1.setCategoryName(category.getCategoryName());
-            category1.setCategoryType(category.getCategoryType());
-            realm.commitTransaction();
+        for (final Category category: categories){
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    Category category1 = realm.createObject(Category.class);
+                    category1.setCategoryId(category.getCategoryId());
+                    category1.setCategoryName(category.getCategoryName());
+                    category1.setCategoryType(category.getCategoryType());
+                }
+            });
         }
     }
 
@@ -88,4 +96,15 @@ public class CategoryActivity extends AppCompatActivity {
         });
         return categories;
     }
+
+    // retrieves only category name for spinner
+    public ArrayList<String> getCategoryName(){
+        ArrayList<String> categories = new ArrayList<>();
+        RealmResults<Category> realmResults = realm.where(Category.class).findAll();
+        for (Category category: realmResults){
+            categories.add(category.getCategoryName());
+        }
+        return categories;
+    }
+
 }
