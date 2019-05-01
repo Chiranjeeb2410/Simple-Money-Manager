@@ -11,4 +11,11 @@
         android:title="User Info"
         android:id="@+id/user_info"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/view_cat"
+        android:title="View Categories"
+        android:visible="true"
+        app:showAsAction="never" />
+
 </menu>
