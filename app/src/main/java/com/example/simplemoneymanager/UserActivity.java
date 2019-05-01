@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -72,7 +74,7 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
         Realm.init(getApplicationContext());
         realm = Realm.getDefaultInstance();
-        btnLogOut = (Button) findViewById(R.id.btnLogOut);
+        // btnLogOut = (Button) findViewById(R.id.btnLogOut);
         recyclerView = findViewById(R.id.expense_item_view);
         SP = com.my.sauravvishal8797.alarmify.helpers.PreferencesUtil.getInstance(this);
         textView = findViewById(R.id.gomn);
@@ -227,4 +229,35 @@ public class UserActivity extends AppCompatActivity {
         super.onResume();
         setAdapter();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            signout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void signout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent in = new Intent(UserActivity.this, LoginActivity.class);
+        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(in);
+        finish();
+    }
+
+
 }
+
+
+
+

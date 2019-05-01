@@ -116,6 +116,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="100dp"
         android:id="@+id/expense_item_view"
         android:layout_below="@id/card_id">
 
@@ -126,24 +127,12 @@
         android:id="@+id/add_floating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btnLogOut"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="3.8in"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_add_black_24dp" />
-
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="7dp"
-        android:text="Logout" />
 
 </RelativeLayout>
 
