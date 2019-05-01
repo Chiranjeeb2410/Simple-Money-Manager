@@ -12,23 +12,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/category_name"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edittext_border"
-            android:layout_marginLeft="20dp"
-            android:padding="15dp"
-            android:layout_marginRight="20dp"
-            android:hint="Enter category name"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/category_limit"
+            android:id="@+id/monthly_limit"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_border"
             android:padding="15dp"
-            android:hint="Enter category limit"
+            android:hint="Enter monthly limit"
             android:inputType="number"
             android:layout_marginLeft="20dp"/>
     </LinearLayout>

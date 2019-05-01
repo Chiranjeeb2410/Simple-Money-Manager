@@ -3,6 +3,7 @@ package com.example.simplemoneymanager;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.usb.UsbRequest;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -50,6 +51,16 @@ public class UserActivity extends AppCompatActivity {
 
     private TextView textView;
 
+    private com.my.sauravvishal8797.alarmify.helpers.PreferencesUtil SP;
+
+    private TextView monthly_limit_Textview;
+    private TextView balanceTextView;
+    private TextView expensesTextView;
+
+    private final int[] totalAmt = {0};
+
+    private final int[] amount = {0};
+
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
@@ -63,11 +74,14 @@ public class UserActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         btnLogOut = (Button) findViewById(R.id.btnLogOut);
         recyclerView = findViewById(R.id.expense_item_view);
+        SP = com.my.sauravvishal8797.alarmify.helpers.PreferencesUtil.getInstance(this);
         textView = findViewById(R.id.gomn);
+        monthly_limit_Textview = findViewById(R.id.montly_limit);
+        balanceTextView = findViewById(R.id.balance);
+        expensesTextView = findViewById(R.id.todays_expenses);
         Date date2 = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = simpleDateFormat.format(date2);
-        getSupportActionBar().setTitle("Today, "+formattedDate);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         setAdapter();
@@ -120,6 +134,34 @@ public class UserActivity extends AppCompatActivity {
                                 Intent in = new Intent(UserActivity.this, TransactionActivity.class );
                                 startActivity(in);
                                 break;
+
+                            case 2:
+                                AlertDialog.Builder monthlyLimitDialog = new AlertDialog.Builder(UserActivity.this);
+                                View view2 = getLayoutInflater().inflate(R.layout.dialog_add_limit, null);
+                                final EditText monthlyLimit = view2.findViewById(R.id.monthly_limit);
+                                monthlyLimitDialog.setView(view2);
+                                monthlyLimitDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if (monthlyLimit.getText().toString().isEmpty()){
+                                            Toast.makeText(getApplicationContext(), "Enter valid limit", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            SharedPreferences.Editor editor = SP.getEditor();
+                                            editor.putString("monthly_limit", monthlyLimit.getText().toString());
+                                            editor.commit();
+                                        }
+                                        monthly_limit_Textview.setText(SP.getString("monthly_limit", "0"));
+                                    }
+                                });
+                                monthlyLimitDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                });
+                                AlertDialog dialog2 = monthlyLimitDialog.create();
+                                dialog2.show();
+
                         }
 
                     }
@@ -139,7 +181,7 @@ public class UserActivity extends AppCompatActivity {
         });
     }
 
-    private ArrayList<Transaction> getTransactionData(final String date){
+    private ArrayList<Transaction> getTransactionData(){
         final ArrayList<Transaction> transactionArrayList = new ArrayList<>();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -148,8 +190,8 @@ public class UserActivity extends AppCompatActivity {
                 if (transactionRealmResults.size() != 0){
                     textView.setVisibility(View.GONE);
                     for (Transaction t: transactionRealmResults){
-                        if (t.getDate().equals(date))
-                            transactionArrayList.add(t);
+                        amount[0] = amount[0] + Integer.parseInt(t.getAmount());
+                        transactionArrayList.add(t);
                     }
                 } else {
                     textView.setVisibility(View.VISIBLE);
@@ -171,10 +213,12 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void setAdapter(){
+        balanceTextView.setText(String.valueOf(Integer.parseInt(SP.getString("monthly_limit", "0")) - amount[0]));
+        expensesTextView.setText(String.valueOf(amount[0]));
         Date date2 = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = simpleDateFormat.format(date2);
-        TransactionAdapter transactionAdapter = new TransactionAdapter(this, getTransactionData(formattedDate));
+        TransactionAdapter transactionAdapter = new TransactionAdapter(this, getTransactionData());
         recyclerView.setAdapter(transactionAdapter);
     }
 

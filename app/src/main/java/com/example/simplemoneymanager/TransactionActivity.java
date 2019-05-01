@@ -46,6 +46,8 @@ public class TransactionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
         getSupportActionBar().setTitle("Transaction Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         realm = Realm.getDefaultInstance();
         cat = (Spinner) findViewById(R.id.spinner_category);
         CategoryActivity helper = new CategoryActivity();
@@ -91,6 +93,12 @@ public class TransactionActivity extends AppCompatActivity {
         // cat1.add("Select Category");
 
         // retrieve spinner data
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     private void addTransactionToDatabse(String category, String amount, String date, String memo){

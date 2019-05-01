@@ -13,7 +13,10 @@ import com.example.simplemoneymanager.R;
 
 import com.example.simplemoneymanager.models.Transaction;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder>{
 
@@ -38,6 +41,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Transaction transaction = transactionArrayList.get(i);
         viewHolder.expenseCategory.setText(transaction.getCategory());
         viewHolder.expenseAmount.setText(transaction.getAmount());
+        Date date2 = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = simpleDateFormat.format(date2);
+        viewHolder.dateTrans.setText(formattedDate);
     }
 
     @Override
@@ -49,12 +56,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         private TextView expenseCategory;
         private TextView expenseAmount;
+        private TextView dateTrans;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             expenseCategory = itemView.findViewById(R.id.category_trans);
             expenseAmount = itemView.findViewById(R.id.amount_text);
+            dateTrans = itemView.findViewById(R.id.date_transaction);
+
         }
     }
 }

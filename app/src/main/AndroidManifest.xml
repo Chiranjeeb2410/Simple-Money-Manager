@@ -31,7 +31,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".TransactionActivity" />
-        <activity android:name=".TransActivity"></activity>
+        <activity android:name=".TransActivity"
+            android:parentActivityName=".UserActivity"></activity>
     </application>
 
 </manifest>
