@@ -2,10 +2,7 @@ package com.example.simplemoneymanager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.print.PrinterId;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,24 +12,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.simplemoneymanager.models.Category;
+import com.example.simplemoneymanager.helpers.PreferencesUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jaeger.library.StatusBarUtil;
-
-import java.util.ArrayList;
 
 import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
-    public EditText emailId, passwd, confPasswd;
+    public EditText emailId, passwd, confPasswd, username;
     Button btnSignUp, newPassButton;
     TextView signIn;
     FirebaseAuth firebaseAuth;
 
-    private SharedPreferences SP;
+    private PreferencesUtil SP;
 
     private ProgressBar signUpProgress;
 
@@ -41,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         Realm.init(getApplicationContext());
-        SP = PreferenceManager.getDefaultSharedPreferences(this);
+        SP = PreferencesUtil.getInstance(this);
         /**String firstLaunch = SP.getString("firstLaunch", "no");
         if (firstLaunch.equals("no")){
             addCategoriesForFirstTimeLaunch();
@@ -52,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         emailId = findViewById(R.id.ETemail);
         passwd = findViewById(R.id.ETpassword);
+        username = findViewById(R.id.username_edittext);
         btnSignUp = findViewById(R.id.btnSignUp);
         signUpProgress = findViewById(R.id.signup_progressbar);
         signIn = findViewById(R.id.TVSignIn);
@@ -64,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 String emailID = emailId.getText().toString();
                 String paswd = passwd.getText().toString();
                 String confPd = confPasswd.getText().toString();
+                SharedPreferences.Editor editor = SP.getEditor();
+                editor.putString("emailID", emailID);
+                editor.putString("username", username.getText().toString());
+                editor.commit();
                 if (emailID.isEmpty()) {
                     emailId.setError("Provide your Email first!");
                     emailId.requestFocus();

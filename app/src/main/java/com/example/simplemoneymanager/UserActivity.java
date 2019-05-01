@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.simplemoneymanager.adapters.TransactionAdapter;
+import com.example.simplemoneymanager.helpers.PreferencesUtil;
 import com.example.simplemoneymanager.models.Category;
 import com.example.simplemoneymanager.models.Transaction;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,7 +54,7 @@ public class UserActivity extends AppCompatActivity {
 
     private TextView textView;
 
-    private com.my.sauravvishal8797.alarmify.helpers.PreferencesUtil SP;
+    private PreferencesUtil SP;
 
     private TextView monthly_limit_Textview;
     private TextView balanceTextView;
@@ -76,7 +77,7 @@ public class UserActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         // btnLogOut = (Button) findViewById(R.id.btnLogOut);
         recyclerView = findViewById(R.id.expense_item_view);
-        SP = com.my.sauravvishal8797.alarmify.helpers.PreferencesUtil.getInstance(this);
+        SP = PreferencesUtil.getInstance(this);
         textView = findViewById(R.id.gomn);
         monthly_limit_Textview = findViewById(R.id.montly_limit);
         balanceTextView = findViewById(R.id.balance);
@@ -233,9 +234,32 @@ public class UserActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_logout) {
-            signout();
-            return true;
+        switch (id){
+            case R.id.action_logout:
+                signout();
+                return true;
+
+            case R.id.user_info:
+                AlertDialog.Builder monthlyLimitDialog = new AlertDialog.Builder(UserActivity.this);
+                View view2 = getLayoutInflater().inflate(R.layout.user_info, null);
+                String name = SP.getString("username", "none");
+                String email = SP.getString("emailID", "none");
+                String monthlylimit = SP.getString("monthly_limit", "0");
+                TextView Uname = view2.findViewById(R.id.username);
+                Uname.setText(name);
+                TextView userEmail = view2.findViewById(R.id.email);
+                userEmail.setText(email);
+                TextView mothlylimit = view2.findViewById(R.id.monthly_limit_value);
+                mothlylimit.setText(monthlylimit);
+                monthlyLimitDialog.setView(view2);
+                monthlyLimitDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                AlertDialog dialog = monthlyLimitDialog.create();
+                dialog.show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -247,8 +271,6 @@ public class UserActivity extends AppCompatActivity {
         startActivity(in);
         finish();
     }
-
-
 }
 
 

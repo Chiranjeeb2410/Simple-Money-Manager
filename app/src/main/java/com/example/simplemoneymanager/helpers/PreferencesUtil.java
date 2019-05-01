@@ -1,11 +1,10 @@
-package com.my.sauravvishal8797.alarmify.helpers;
+package com.example.simplemoneymanager.helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class PreferencesUtil {
-
     private static PreferencesUtil instance;
     private SharedPreferences SP;
 

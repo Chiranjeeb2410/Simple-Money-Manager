@@ -6,4 +6,9 @@
         android:title="Logout"
         android:visible="true"
         app:showAsAction="never" />
+
+    <item
+        android:title="User Info"
+        android:id="@+id/user_info"
+        app:showAsAction="never"/>
 </menu>
