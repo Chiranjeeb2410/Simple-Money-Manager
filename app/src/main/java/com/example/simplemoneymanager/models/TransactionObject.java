@@ -5,12 +5,20 @@ import java.util.ArrayList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class TransactionObject extends RealmObject{
+public class TransactionObject{
 
     @PrimaryKey
+    private String transactionObjectId;
     private String date;
-    private ArrayList<Transaction> allTransactions;
     private int remainingAmount;
+
+    public void setTransactionObjectId(String transactionObjectId) {
+        this.transactionObjectId = transactionObjectId;
+    }
+
+    public String getTransactionObjectId() {
+        return transactionObjectId;
+    }
 
     public void setDate(String date) {
         this.date = date;
@@ -18,14 +26,6 @@ public class TransactionObject extends RealmObject{
 
     public String getDate() {
         return date;
-    }
-
-    public void setAllTransactions(ArrayList<Transaction> allTransactions) {
-        this.allTransactions = allTransactions;
-    }
-
-    public ArrayList<Transaction> getAllTransactions() {
-        return allTransactions;
     }
 
     public void setRemainingAmount(int remainingAmount) {

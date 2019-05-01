@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:layout_height="fill_parent">
+
+    <ProgressBar
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,12 +28,11 @@
             android:layout_marginBottom="10dp"/>
 
         <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinner_category"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:paddingBottom="50dp"
-            android:prompt="Spinner title">
+            android:paddingBottom="50dp">
 
         </android.support.v7.widget.AppCompatSpinner>
 
@@ -35,8 +40,7 @@
             android:id="@+id/trans_amt_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="50dp">
+            android:layout_centerHorizontal="true">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,29 +51,21 @@
                 android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/date_layout"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="50dp">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/date"
-                android:layout_marginTop="20dp"
-                android:padding="15dp"
-                android:hint="Enter date"
-                android:inputType="date" />
-        </android.support.design.widget.TextInputLayout>
+            android:id="@+id/date"
+            android:layout_marginTop="20dp"
+            android:textSize="18dp"
+            android:padding="15dp"
+            android:hint="Enter date" />
 
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/trans_type_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="50dp">
+            android:layout_centerHorizontal="true">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,5 +96,5 @@
             </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
 

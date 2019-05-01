@@ -100,21 +100,13 @@
 
     </android.support.v7.widget.CardView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/today"
-        android:layout_below="@id/card_id"
-        android:text="Today"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"/>
-
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/expense_item_view"
-        android:layout_below="@id/today">
+        android:layout_below="@id/card_id">
 
     </android.support.v7.widget.RecyclerView>
 

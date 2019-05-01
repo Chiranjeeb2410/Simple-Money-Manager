@@ -12,27 +12,41 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.simplemoneymanager.adapters.TransactionAdapter;
 import com.example.simplemoneymanager.models.Category;
+import com.example.simplemoneymanager.models.Transaction;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jaeger.library.StatusBarUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class UserActivity extends AppCompatActivity {
     Button btnLogOut;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FloatingActionButton floatingActionButton;
+
+    private RecyclerView recyclerView;
+
+    private Realm realm;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -43,7 +57,17 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        Realm.init(getApplicationContext());
+        realm = Realm.getDefaultInstance();
         btnLogOut = (Button) findViewById(R.id.btnLogOut);
+        recyclerView = findViewById(R.id.expense_item_view);
+        Date date2 = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = simpleDateFormat.format(date2);
+        getSupportActionBar().setTitle("Today, "+formattedDate);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        setAdapter();
         floatingActionButton = findViewById(R.id.add_floating_button);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,8 +136,26 @@ public class UserActivity extends AppCompatActivity {
         });
     }
 
+    private ArrayList<Transaction> getTransactionData(final String date){
+        final ArrayList<Transaction> transactionArrayList = new ArrayList<>();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<Transaction> transactionRealmResults = realm.where(Transaction.class).findAll();
+                if (transactionRealmResults.size() != 0){
+                    for (Transaction t: transactionRealmResults){
+                        if (t.getDate().equals(date))
+                            transactionArrayList.add(t);
+                    }
+                } else {
+
+                }
+            }
+        });
+        return transactionArrayList;
+    }
+
     private void addCategoryInfo(final String id, final String name, final String categoryType) {
-        Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -122,5 +164,19 @@ public class UserActivity extends AppCompatActivity {
                 category.setCategoryType(categoryType);
             }
         });
+    }
+
+    private void setAdapter(){
+        Date date2 = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = simpleDateFormat.format(date2);
+        TransactionAdapter transactionAdapter = new TransactionAdapter(this, getTransactionData(formattedDate));
+        recyclerView.setAdapter(transactionAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setAdapter();
     }
 }

@@ -18,15 +18,13 @@ public class CategoryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     Realm realm;
-    public CategoryActivity(Realm realm)    {
-        this.realm = realm;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         getSupportActionBar().setTitle("Categories");
+        realm = Realm.getDefaultInstance();
         recyclerView = findViewById(R.id.category_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -99,6 +97,7 @@ public class CategoryActivity extends AppCompatActivity {
 
     // retrieves only category name for spinner
     public ArrayList<String> getCategoryName(){
+        Realm realm = Realm.getDefaultInstance();
         ArrayList<String> categories = new ArrayList<>();
         RealmResults<Category> realmResults = realm.where(Category.class).findAll();
         for (Category category: realmResults){
