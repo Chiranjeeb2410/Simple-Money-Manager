@@ -173,14 +173,7 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        // logout user through firebaseAuth
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent I = new Intent(UserActivity.this, LoginActivity.class);
-                startActivity(I);
-            }
-        });
+        // logout user through firebaseAut
     }
 
     private ArrayList<Transaction> getTransactionData(){
