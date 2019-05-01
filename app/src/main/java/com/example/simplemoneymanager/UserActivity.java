@@ -48,6 +48,8 @@ public class UserActivity extends AppCompatActivity {
 
     private Realm realm;
 
+    private TextView textView;
+
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
@@ -61,6 +63,7 @@ public class UserActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         btnLogOut = (Button) findViewById(R.id.btnLogOut);
         recyclerView = findViewById(R.id.expense_item_view);
+        textView = findViewById(R.id.gomn);
         Date date2 = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = simpleDateFormat.format(date2);
@@ -143,12 +146,13 @@ public class UserActivity extends AppCompatActivity {
             public void execute(Realm realm) {
                 RealmResults<Transaction> transactionRealmResults = realm.where(Transaction.class).findAll();
                 if (transactionRealmResults.size() != 0){
+                    textView.setVisibility(View.GONE);
                     for (Transaction t: transactionRealmResults){
                         if (t.getDate().equals(date))
                             transactionArrayList.add(t);
                     }
                 } else {
-
+                    textView.setVisibility(View.VISIBLE);
                 }
             }
         });
