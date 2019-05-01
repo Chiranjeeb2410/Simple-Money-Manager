@@ -260,6 +260,12 @@ public class UserActivity extends AppCompatActivity {
                 });
                 AlertDialog dialog = monthlyLimitDialog.create();
                 dialog.show();
+
+            case R.id.view_cat:
+                Intent in1 = new Intent(UserActivity.this, CategoryActivity.class);
+                in1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(in1);
+                finish();
         }
         return super.onOptionsItemSelected(item);
     }
