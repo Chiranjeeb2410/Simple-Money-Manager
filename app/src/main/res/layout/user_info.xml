@@ -26,12 +26,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Username : "
-                    android:textSize="20dp"/>
+                    android:textSize="18dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
+                    android:textSize="18dp"
                     android:id="@+id/username"
                     android:text="sauravvishal8797"/>
             </LinearLayout>
@@ -48,13 +49,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email : "
-                    android:textSize="20dp"/>
+                    android:textSize="18dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
                     android:id="@+id/email"
+                    android:textSize="18dp"
                     android:text="sauravvishal8797"/>
             </LinearLayout>
 
@@ -70,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Monthly Limit : "
-                    android:textSize="20dp"/>
+                    android:textSize="18dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -82,6 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
+                    android:textSize="18dp"
                     android:id="@+id/monthly_limit_value"
                     android:text="5"/>
             </LinearLayout>
