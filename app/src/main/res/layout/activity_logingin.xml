@@ -10,10 +10,11 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
-        app:cardCornerRadius="5dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginRight="15dp"
+        app:cardCornerRadius="5dp">
 
 
         <LinearLayout
@@ -22,31 +23,31 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/sign_up_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:id="@+id/sign_up_text"
-                android:text="Sign In"
-                android:textSize="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp"
-                android:textColor="#515151"/>
+                android:gravity="center_horizontal"
+                android:text="Sign In"
+                android:textColor="#515151"
+                android:textSize="25dp" />
 
             <EditText
+                android:id="@+id/loginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:id="@+id/loginEmail"
-                android:hint="Email"
-                android:textCursorDrawable="@drawable/color_cursor"
-                android:background="@drawable/edittext_border"
-                android:padding="15dp"
-                android:drawableLeft="@drawable/ic_email_black_24dp"
-                android:paddingBottom="15dp"
-                android:drawablePadding="12dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="17dp"/>
+                android:background="@drawable/edittext_border"
+                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawablePadding="12dp"
+                android:hint="Email"
+                android:padding="15dp"
+                android:paddingBottom="15dp"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="17dp" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -55,43 +56,42 @@
                 app:passwordToggleEnabled="true">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/loginpaswd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:id="@+id/loginpaswd"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textCursorDrawable="@drawable/color_cursor"
                     android:background="@drawable/edittext_border"
-                    android:padding="15dp"
                     android:drawableStart="@drawable/ic_card_travel_black_24dp"
                     android:drawableLeft="@drawable/ic_card_travel_black_24dp"
-                    android:paddingBottom="15dp"
                     android:drawablePadding="12dp"
-                    android:textSize="17dp"/>
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:paddingBottom="15dp"
+                    android:textCursorDrawable="@drawable/color_cursor"
+                    android:textSize="17dp" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
+                android:id="@+id/forgotPass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/forgotPass"
-                android:text="Forgot Password ?"
-                android:textColor="@color/colorPrimary"
-                android:layout_gravity="end"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="12dp"/>
+                android:text="Forgot Password ?"
+                android:textColor="@color/colorPrimary" />
 
             <Button
+                android:id="@+id/btnLogIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnLogIn"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/edittext_border"
                 android:backgroundTint="@color/colorPrimary"
-                android:layout_marginBottom="10dp"
                 android:text="SIGN IN"
                 android:textSize="18dp" />
 
@@ -102,12 +102,12 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/TVSignIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/TVSignIn"
-                    android:textColor="@color/colorPrimary"
                     android:layout_marginBottom="12dp"
-                    android:text="Don't have an account?"/>
+                    android:text="Don't have an account?"
+                    android:textColor="@color/colorPrimary" />
 
             </LinearLayout>
 
@@ -122,29 +122,29 @@
                     android:layout_width="40dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center_vertical"
-                    android:background="#515151"/>
+                    android:background="#515151" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:text="OR"/>
+                    android:text="OR" />
 
                 <View
                     android:layout_width="40dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center_vertical"
-                    android:background="#515151"/>
+                    android:background="#515151" />
 
             </LinearLayout>
 
             <com.google.android.gms.common.SignInButton
-                android:id="@+id/sign_in_button"
-                android:layout_marginBottom="12dp"
+                android:id="@+id/btn_sign_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp" />
 
         </LinearLayout>
 

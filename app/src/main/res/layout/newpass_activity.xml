@@ -14,19 +14,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:layout_marginTop="10dp"
-            android:hint="E-Mail"
-            android:id="@+id/emailAdd" />
+            android:layout_marginTop="50dp"
+            android:hint="Enter email"
+            android:id="@+id/emailAdd"
+            android:textSize="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"/>
 
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:text="Submit New Password Link"
+        android:text="Get password resubmission link"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginBottom="100dp"
         android:textColor="#FFFF"
         android:id="@+id/newPassLink"
-        android:background="@color/colorAccent" />
+        android:background="@color/colorAccent"
+        android:layout_marginTop="50dp"
+        android:textSize="15dp"/>
+
 
 </LinearLayout>
