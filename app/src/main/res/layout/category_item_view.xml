@@ -18,7 +18,7 @@
             android:id="@+id/category_name"
             android:text="Food"
             android:layout_margin="15dp"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

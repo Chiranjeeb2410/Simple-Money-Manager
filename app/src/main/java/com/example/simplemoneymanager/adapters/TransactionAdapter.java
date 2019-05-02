@@ -22,6 +22,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     private ArrayList<Transaction> transactionArrayList;
     private Context context;
+    private View.OnClickListener onClickListener;
+
 
     public TransactionAdapter(Context context, ArrayList<Transaction> categoryArrayList) {
         this.context = context;
@@ -32,6 +34,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.transaction_item, viewGroup, false);
+        view.setOnClickListener(onClickListener);
         return new ViewHolder(view);
     }
 
@@ -41,10 +44,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Transaction transaction = transactionArrayList.get(i);
         viewHolder.expenseCategory.setText(transaction.getCategory());
         viewHolder.expenseAmount.setText(transaction.getAmount());
+        viewHolder.expenseAmount.setTag(transaction);
         Date date2 = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = simpleDateFormat.format(date2);
         viewHolder.dateTrans.setText(formattedDate);
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener){
+        this.onClickListener = onClickListener;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.simplemoneymanager;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +40,9 @@ public class TransactionActivity extends AppCompatActivity {
     private TextView date;
     private Button saveButton;
 
+    private boolean editmode;
+
+
     private ProgressBar progressBar;
 
 
@@ -47,6 +52,7 @@ public class TransactionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_transaction);
         getSupportActionBar().setTitle("Transaction Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final Intent intent = getIntent();
 
         realm = Realm.getDefaultInstance();
         cat = (Spinner) findViewById(R.id.spinner_category);
@@ -81,13 +87,25 @@ public class TransactionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!amount.getText().toString().isEmpty()){
-                    addTransactionToDatabse(categorySelected, amount.getText().toString(), date.getText().toString(),
-                            memo.getText().toString());
+                    if (editmode){
+                        updateTransaction(intent.getStringExtra("category"), amount.getText().toString(), date.getText().toString(),
+                                memo.getText().toString(), intent.getStringExtra("id"));
+                    } else {
+                        addTransactionToDatabse(categorySelected, amount.getText().toString(), date.getText().toString(),
+                                memo.getText().toString());
+                    }
                     finish();
                 }
                     //Toast.makeText(this,  "Pl", Toast.LENGTH_SHORT).show()
             }
         });
+        if (intent.hasExtra("edit_trans")){
+            editmode = intent.getBooleanExtra("editt_trans", false);
+            amount.setText(intent.getStringExtra("amount"));
+            date.setText(intent.getStringExtra("date"));
+            memo.setText(intent.getStringExtra("memo"));
+            cat.setPrompt(intent.getStringExtra("category"));
+        }
 
         // List<String> cat1 = new ArrayList<>();
         // cat1.add("Select Category");
@@ -99,6 +117,28 @@ public class TransactionActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp(){
         finish();
         return true;
+    }
+
+    public void deleteTransaction(final String id){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<Transaction> realmResults = realm.where(Transaction.class).equalTo("transactionId", id).findAll();
+                if(realmResults.get(0).getTransactionId().equals(id))
+                    realmResults.deleteAllFromRealm();
+            }
+        });
+    }
+
+    private void updateTransaction(String category, String amount, String date, String memo, String id){
+        deleteTransaction(id);
+        realm.beginTransaction();
+        Transaction transaction = realm.createObject(Transaction.class, id);
+        transaction.setCategory(category);
+        transaction.setAmount(amount);
+        transaction.setMemo(memo);
+        transaction.setDate(date);
+        realm.commitTransaction();
     }
 
     private void addTransactionToDatabse(String category, String amount, String date, String memo){

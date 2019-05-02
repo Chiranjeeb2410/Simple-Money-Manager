@@ -29,7 +29,8 @@
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".CategoryActivity" />
+        <activity android:name=".CategoryActivity"
+            android:parentActivityName=".UserActivity"/>
         <activity android:name=".TransactionActivity" />
         <activity android:name=".TransActivity"
             android:parentActivityName=".UserActivity"></activity>

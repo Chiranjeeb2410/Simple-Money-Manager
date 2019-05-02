@@ -37,7 +37,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         Category category = categoryArrayList.get(i);
         viewHolder.expenseCategory.setText(category.getCategoryName());
-        viewHolder.expenseType.setText(category.getCategoryType());
+        viewHolder.expenseType.setText("\u20B9"+" "+category.getCategoryType());
         viewHolder.expenseCategory.setTag(category);
 
     }

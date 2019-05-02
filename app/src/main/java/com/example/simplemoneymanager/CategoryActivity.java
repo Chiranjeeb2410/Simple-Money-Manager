@@ -24,6 +24,7 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         getSupportActionBar().setTitle("Categories");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         realm = Realm.getDefaultInstance();
         recyclerView = findViewById(R.id.category_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -94,6 +95,13 @@ public class CategoryActivity extends AppCompatActivity {
         });
         return categories;
     }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
 
     // retrieves only category name for spinner
     public ArrayList<String> getCategoryName(){

@@ -69,6 +69,21 @@ public class UserActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private Toolbar toolbar;
 
+    private View.OnClickListener onClickListener= new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Transaction transaction = (Transaction)view.findViewById(R.id.amount_text).getTag();
+            Intent intent = new Intent(UserActivity.this, TransactionActivity.class);
+            intent.putExtra("edit_trans", true);
+            intent.putExtra("category", transaction.getCategory());
+            intent.putExtra("amount", transaction.getAmount());
+            intent.putExtra("memo", transaction.getMemo());
+            intent.putExtra("date", transaction.getDate());
+            intent.putExtra("id", transaction.getTransactionId());
+            startActivity(intent);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,9 +179,7 @@ public class UserActivity extends AppCompatActivity {
                                 });
                                 AlertDialog dialog2 = monthlyLimitDialog.create();
                                 dialog2.show();
-
                         }
-
                     }
                 });
                 Dialog dialog = builder.create();
@@ -215,6 +228,7 @@ public class UserActivity extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = simpleDateFormat.format(date2);
         TransactionAdapter transactionAdapter = new TransactionAdapter(this, getTransactionData());
+        transactionAdapter.setOnClickListener(onClickListener);
         recyclerView.setAdapter(transactionAdapter);
     }
 
@@ -263,7 +277,6 @@ public class UserActivity extends AppCompatActivity {
 
             case R.id.view_cat:
                 Intent in1 = new Intent(UserActivity.this, CategoryActivity.class);
-                in1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(in1);
                 finish();
         }
