@@ -29,6 +29,9 @@
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".SplashWelcome"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".CategoryActivity"
             android:parentActivityName=".UserActivity"/>
         <activity android:name=".TransactionActivity" />
