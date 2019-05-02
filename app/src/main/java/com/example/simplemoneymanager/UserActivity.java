@@ -282,6 +282,12 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(in1);
                 finish();
                 return true;
+
+            case R.id.set_menu:
+                Intent in2 = new Intent(UserActivity.this, SettingsActivity.class);
+                startActivity(in2);
+                finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -2,8 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_logout"
-        android:title="Logout"
+        android:id="@+id/set_menu"
+        android:title="Settings"
+        android:visible="true"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/view_cat"
+        android:title="View Categories"
         android:visible="true"
         app:showAsAction="never" />
 
@@ -13,8 +19,8 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/view_cat"
-        android:title="View Categories"
+        android:id="@+id/action_logout"
+        android:title="Logout"
         android:visible="true"
         app:showAsAction="never" />
 
