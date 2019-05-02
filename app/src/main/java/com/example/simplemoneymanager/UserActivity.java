@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import com.example.simplemoneymanager.adapters.TransactionAdapter;
 import com.example.simplemoneymanager.helpers.PreferencesUtil;
 import com.example.simplemoneymanager.models.Category;
 import com.example.simplemoneymanager.models.Transaction;
+import com.example.simplemoneymanager.models.UserPrefs;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jaeger.library.StatusBarUtil;
 
@@ -80,6 +82,7 @@ public class UserActivity extends AppCompatActivity {
             intent.putExtra("memo", transaction.getMemo());
             intent.putExtra("date", transaction.getDate());
             intent.putExtra("id", transaction.getTransactionId());
+            Log.i("gerty", transaction.getTransactionId());
             startActivity(intent);
         }
     };
@@ -164,9 +167,7 @@ public class UserActivity extends AppCompatActivity {
                                         if (monthlyLimit.getText().toString().isEmpty()){
                                             Toast.makeText(getApplicationContext(), "Enter valid limit", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            SharedPreferences.Editor editor = SP.getEditor();
-                                            editor.putString("monthly_limit", monthlyLimit.getText().toString());
-                                            editor.commit();
+
                                         }
                                         monthly_limit_Textview.setText(SP.getString("monthly_limit", "0"));
                                     }
@@ -274,11 +275,13 @@ public class UserActivity extends AppCompatActivity {
                 });
                 AlertDialog dialog = monthlyLimitDialog.create();
                 dialog.show();
+                return true;
 
             case R.id.view_cat:
                 Intent in1 = new Intent(UserActivity.this, CategoryActivity.class);
                 startActivity(in1);
                 finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
