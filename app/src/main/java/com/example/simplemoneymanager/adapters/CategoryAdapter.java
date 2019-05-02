@@ -19,6 +19,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     private ArrayList<Category> categoryArrayList;
     private Context context;
+    private View.OnClickListener onClickListener;
 
     public CategoryAdapter(Context context, ArrayList<Category> categoryArrayList) {
        this.context = context;
@@ -29,6 +30,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.category_item_view, viewGroup, false);
+        view.setOnClickListener(onClickListener);
         return new ViewHolder(view);
     }
 
@@ -40,6 +42,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         viewHolder.expenseType.setText("\u20B9"+" "+category.getCategoryType());
         viewHolder.expenseCategory.setTag(category);
 
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener){
+        this.onClickListener = onClickListener;
     }
 
     @Override

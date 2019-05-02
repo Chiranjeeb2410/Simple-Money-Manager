@@ -89,7 +89,9 @@ public class TransactionActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!amount.getText().toString().isEmpty()){
+
+                if (!amount.getText().toString().isEmpty() && Integer.parseInt(amount.getText().toString())
+                        <= getCategoryAmount(categorySelected)){
                     if (editmode){
                         Log.i("gertyui", intent.getStringExtra("id"));
                         updateTransaction(intent.getStringExtra("category"), amount.getText().toString(), date.getText().toString(),
@@ -100,6 +102,8 @@ public class TransactionActivity extends AppCompatActivity {
                                 memo.getText().toString());
                     }
                     finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Amount exceeds the category Limit", Toast.LENGTH_SHORT).show();
                 }
                     //Toast.makeText(this,  "Pl", Toast.LENGTH_SHORT).show()
             }
@@ -110,6 +114,18 @@ public class TransactionActivity extends AppCompatActivity {
             memo.setText(intent.getStringExtra("memo"));
             cat.setPrompt(intent.getStringExtra("category"));
         }
+    }
+
+    private int getCategoryAmount(final String categoryName){
+        final int[] amount = {0};
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<Category> realmResults = realm.where(Category.class).equalTo("categoryName", categoryName).findAll();
+                amount[0] = Integer.parseInt(realmResults.get(0).getCategoryType());
+            }
+        });
+        return amount[0];
     }
 
     @Override

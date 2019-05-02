@@ -1,9 +1,13 @@
 package com.example.simplemoneymanager;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.EditText;
 
 import com.example.simplemoneymanager.adapters.CategoryAdapter;
 import com.example.simplemoneymanager.models.Category;
@@ -19,6 +23,45 @@ public class CategoryActivity extends AppCompatActivity {
 
     Realm realm;
 
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            final Category category = (Category) view.findViewById(R.id.category_name).getTag();
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(CategoryActivity.this);
+            View view1 = getLayoutInflater().inflate(R.layout.dialog_add_category, null);
+            builder1.setView(view1);
+            final EditText categoryName = view1.findViewById(R.id.category_name);
+            categoryName.setText(category.getCategoryName());
+            final EditText categoryLimit = view1.findViewById(R.id.category_limit);
+            categoryLimit.setText(category.getCategoryType());
+            builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            Category category1 = realm.where(Category.class).equalTo("categoryId",
+                                    category.getCategoryId()).findFirst();
+                            category1.setCategoryName(category.getCategoryName());
+                            category1.setCategoryType(categoryLimit.getText().toString());
+                            realm.copyToRealmOrUpdate(category1);
+                        }
+                    });
+                    setAdapter();
+                    dialogInterface.dismiss();
+                }
+            });
+            builder1.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            AlertDialog alertDialog = builder1.create();
+            alertDialog.show();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +72,6 @@ public class CategoryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.category_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        CategoryAdapter categoryAdapter = new CategoryAdapter(this, getCategoryData());
-        recyclerView.setAdapter(categoryAdapter);
     }
 
     private void addCategoriesForFirstTimeLaunch(){
@@ -100,6 +141,12 @@ public class CategoryActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp(){
         finish();
         return true;
+    }
+
+    private void setAdapter(){
+        CategoryAdapter categoryAdapter = new CategoryAdapter(this, getCategoryData());
+        categoryAdapter.setOnClickListener(onClickListener);
+        recyclerView.setAdapter(categoryAdapter);
     }
 
     // retrieves only category name for spinner
