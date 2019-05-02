@@ -102,7 +102,6 @@ public class CategoryActivity extends AppCompatActivity {
         return true;
     }
 
-
     // retrieves only category name for spinner
     public ArrayList<String> getCategoryName(){
         Realm realm = Realm.getDefaultInstance();
