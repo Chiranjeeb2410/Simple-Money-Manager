@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -107,27 +110,43 @@ public class TransactionActivity extends AppCompatActivity {
             memo.setText(intent.getStringExtra("memo"));
             cat.setPrompt(intent.getStringExtra("category"));
         }
-
-        // List<String> cat1 = new ArrayList<>();
-        // cat1.add("Select Category");
-
-        // retrieve spinner data
     }
 
     @Override
-    public boolean onSupportNavigateUp(){
-        finish();
-        return true;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.trans_del, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.del_trans) {
+            deleteTransaction(String.valueOf(id));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void deleteTransaction(final String id){
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                RealmResults<Transaction> realmResults = realm.where(Transaction.class).equalTo("transactionId", id).findAll();
-                realmResults.deleteAllFromRealm();
+                RealmResults<Transaction> realmResults = realm.where(Transaction.class).equalTo("transactionId",
+                        id).findAll();realmResults.deleteAllFromRealm();
             }
         });
+        Intent in2 = new Intent(TransactionActivity.this, UserActivity.class);
+        in2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(in2);
+        finish();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     private void updateTransaction(String category, String amount, String date, String memo, String id){
