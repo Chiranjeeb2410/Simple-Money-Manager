@@ -15,7 +15,7 @@ public class SplashWelcome extends AppCompatActivity {
         super.onCreate(icicle);
         setContentView(R.layout.splash_welcome);
         StatusBarUtil.setTransparent(this);
-        int SPLASH_DISPLAY_LENGTH = 1000;
+        int SPLASH_DISPLAY_LENGTH = 2000;
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
